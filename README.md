@@ -3,4 +3,4 @@
 ## Edu Collab Capstone
 
 ### Open this link to download the APK 
-#### [[[https://drive.google.com/drive/folders/18zWshs5xRoqPem4sBKDTzH-oMFP0PG1E](https://drive.google.com/file/d/1NeODSuYl-RPMQA2DyPw-1ZsLiAxAt-5m/view?usp=sharing)](https://drive.google.com/file/d/1LlpPxreSGrcQ2yCanHPBU-GJ3dLNl_3z/view?usp=sharing)](https://drive.google.com/file/d/1LlpPxreSGrcQ2yCanHPBU-GJ3dLNl_3z/view?usp=sharing)
+#### https://drive.google.com/file/d/1WKETStdTZlgoFF-C33HjM4ldYTITpkdz/view?usp=sharing
