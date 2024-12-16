@@ -33,13 +33,11 @@ class CalculatorAdapter(private val items: List<CalculatorItem>) : RecyclerView.
         holder.label.text = item.label
 
         if (item.isResult) {
-            // Handle result display
             holder.result.visibility = View.VISIBLE
             holder.input.visibility = View.GONE
             holder.dropdown.visibility = View.GONE
             holder.result.text = item.value
         } else if (item.label == "Aktivitas Ektrakurikuler") {
-            // Handle dropdown for "Aktivitas Ekstrakurikuler"
             holder.result.visibility = View.GONE
             holder.input.visibility = View.GONE
             holder.dropdown.visibility = View.VISIBLE
@@ -66,7 +64,6 @@ class CalculatorAdapter(private val items: List<CalculatorItem>) : RecyclerView.
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
         } else {
-            // Handle normal input fields
             holder.result.visibility = View.GONE
             holder.input.visibility = View.VISIBLE
             holder.dropdown.visibility = View.GONE

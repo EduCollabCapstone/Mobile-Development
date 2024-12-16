@@ -9,7 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.capstone.educollab1.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_calculator"
+            app:destination="@id/navigation_calculator" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_notifications"
+            app:destination="@id/navigation_absence" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -18,10 +28,10 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.capstone.educollab1.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_absence"
+        android:name="com.capstone.educollab1.ui.absence.AbsenceFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_absence" />
 
     <fragment
         android:id="@+id/navigation_calculator"

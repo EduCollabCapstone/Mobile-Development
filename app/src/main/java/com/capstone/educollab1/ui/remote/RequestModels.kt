@@ -16,7 +16,7 @@ data class ScheduleRequest(
     val username: String? = null,
     val day: String,
     val subject: String,
-    val period: String // Menggabungkan startTime dan endTime ke dalam satu field period
+    val period: String
 )
 
 data class PredictionRequest(
@@ -24,5 +24,9 @@ data class PredictionRequest(
     val Sleep_Hours: Float,
     val Previous_Scores: Float,
     val Sample_Question_Papers_Practiced: Float,
-    val Extracurricular_Activities: String // "Yes" atau "No"
+    val Extracurricular_Activities: String
+)
+
+data class SentimentRequest(
+    val text: String
 )

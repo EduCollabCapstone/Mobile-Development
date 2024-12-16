@@ -8,18 +8,18 @@
 
     <item
         android:id="@+id/navigation_calculator"
-        android:icon="@drawable/outline_calculate_24"
+        android:icon="@drawable/ic_lightbulb"
         android:title="Calculator" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/outline_notifications_24"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_absence"
+        android:icon="@drawable/ic_checklist"
+        android:title="Absence" />
 
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/outline_space_dashboard_24"
+        android:icon="@drawable/ic_person"
         android:title="@string/title_dashboard" />
 
 </menu>

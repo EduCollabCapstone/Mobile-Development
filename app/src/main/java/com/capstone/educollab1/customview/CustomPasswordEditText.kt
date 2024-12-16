@@ -22,42 +22,22 @@ class CustomPasswordEditText @JvmOverloads constructor(
 ) : AppCompatEditText(context, attrs, defStyleAttr) {
 
     private var isPasswordVisible = false
-    private var isError: Boolean = false
     private var eyeIcon: Drawable? = null
     private var defaultBackground: Drawable? = null
 
     init {
-        // Setup background dan padding
         defaultBackground = ContextCompat.getDrawable(context, R.drawable.ic_edt)
-        setPadding(32, 20, 48, 20)
+        setPadding(24, 16, 24, 16)
         background = defaultBackground ?: ContextCompat.getDrawable(context, android.R.drawable.edit_text)
 
-        // Setup password visibility icon
         eyeIcon = ContextCompat.getDrawable(context, R.drawable.ic_eye)
         transformationMethod = PasswordTransformationMethod.getInstance()
         updatePasswordVisibilityIcon()
 
-        // Kustomisasi tampilan
         isSingleLine = true
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         textSize = 16f
 
-        // Animasi interaksi
-        setOnFocusChangeListener { _, hasFocus ->
-            alpha = if (hasFocus) 1f else 0.9f
-            scaleX = if (hasFocus) 1.01f else 1f
-            scaleY = if (hasFocus) 1.01f else 1f
-
-            // Ubah warna background saat fokus
-            background?.setTint(
-                ContextCompat.getColor(context,
-                    if (hasFocus) R.color.a64CCC5
-                    else R.color.white
-                )
-            )
-        }
-
-        // Password validation
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -66,7 +46,7 @@ class CustomPasswordEditText @JvmOverloads constructor(
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Password visibility toggle
+
         setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = compoundDrawablesRelative[2]
@@ -81,12 +61,8 @@ class CustomPasswordEditText @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        // Warna teks yang selaras
-        setTextColor(ContextCompat.getColor(context, R.color.a04364A))
-        setHintTextColor(ContextCompat.getColor(context, R.color.a64CCC5))
-
-        // Tambahan styling
-        background?.alpha = 230
+        setTextColor(ContextCompat.getColor(context, R.color.white))
+        setHintTextColor(ContextCompat.getColor(context, R.color.white))
     }
 
     private fun togglePasswordVisibility() {
@@ -97,17 +73,17 @@ class CustomPasswordEditText @JvmOverloads constructor(
     }
 
     private fun updatePasswordVisibilityIcon() {
-        eyeIcon?.setBounds(0, 0, 40, 40)
-        setCompoundDrawablesRelative(null, null, eyeIcon, null)
+        eyeIcon?.let {
+            it.setBounds(0, 0, 40, 40)
+            setCompoundDrawablesRelative(null, null, it, null)
+        }
     }
 
     private fun validatePassword(input: String) {
-        isError = if (input.length < 8) {
-            error = context.getString(R.string.password_length)
-            true
+        error = if (input.length < 8) {
+            context.getString(R.string.password_length)
         } else {
-            error = null
-            false
+            null
         }
     }
 }

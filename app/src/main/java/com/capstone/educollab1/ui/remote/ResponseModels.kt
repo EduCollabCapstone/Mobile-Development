@@ -21,7 +21,6 @@ data class ScheduleResponse(
     val subject: String,
     val period: String
 )
- // Menggabungkan startTime dan endTime ke dalam satu field period
 
 data class PredictionResponse(
     val prediction: String
@@ -29,6 +28,21 @@ data class PredictionResponse(
 
 data class SchedulesResponse(
     val schedules: List<ScheduleResponse>?
+)
+
+data class SentimentResponse(
+    val predictions: List<String>
+)
+
+data class ResponseAbsences(
+    val responseAbsences: List<ResponseAbsencesItem?>? = null
+)
+
+data class ResponseAbsencesItem(
+    val date: String? = null,
+    val studentName: String? = null,
+    val jsonMemberClass: String? = null,
+    val status: String? = null
 )
 
 

@@ -155,13 +155,32 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:hint="Masukkan feedback guru disini"
+            android:textColor="@color/black"
             android:padding="12dp"
-            android:background="@drawable/ic_edt"
+            android:background="@drawable/ic_edt_black"
             android:minHeight="100dp"
             android:gravity="top"
             android:textSize="14sp"
             android:scrollbars="vertical"
             app:layout_constraintTop_toBottomOf="@id/tv_nlp_ai" />
+
+        <Button
+            android:id="@+id/btn_submit_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:backgroundTint="#0099A9"
+            android:text="Submit Feedback"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/et_feedback"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <TextView
             android:id="@+id/tv_nlp_result"
@@ -169,25 +188,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:padding="12dp"
-            android:background="@drawable/ic_edt"
+            android:background="@drawable/ic_edt_black"
             android:minHeight="80dp"
             android:textSize="14sp"
-            android:textColor="#666666"
+            android:textColor="@color/black"
             android:hint="Hasil analisis NLP akan muncul disini"
             android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/et_feedback" />
+            app:layout_constraintTop_toBottomOf="@id/btn_submit_feedback" />
 
-        <TextView
-            android:id="@+id/text_dashboard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textColor="#666666"
-            app:layout_constraintTop_toBottomOf="@id/tv_nlp_result"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

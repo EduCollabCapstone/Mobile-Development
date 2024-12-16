@@ -13,28 +13,23 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    // Login User
     @POST("/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
-    // Register User
     @POST("/register")
     suspend fun registerUser(@Body userRequest: UserRequest): Response<UserResponse>
 
-    // Menambahkan Jadwal
     @POST("/add-schedule")
     suspend fun addSchedule(
         @Header("Authorization") token: String,
         @Body scheduleRequest: ScheduleRequest
     ): Response<ScheduleResponse>
 
-    // Melihat Jadwal berdasarkan Username
     @GET("/view-schedule/{username}")
     suspend fun viewSchedule(
         @Path("username") username: String
     ): Response<List<ScheduleResponse>>
 
-    // Memperbarui Jadwal berdasarkan schedule_id
     @PUT("/edit-schedule/{schedule_id}")
     suspend fun updateSchedule(
         @Path("schedule_id") scheduleId: String,
@@ -42,7 +37,6 @@ interface ApiService {
         @Body scheduleRequest: ScheduleRequest
     ): Response<ScheduleResponse>
 
-    // Menghapus Jadwal berdasarkan schedule_id
     @DELETE("del-schedule/{scheduleId}")
     suspend fun deleteSchedule(
         @Path("scheduleId") scheduleId: Int
@@ -53,5 +47,8 @@ interface ApiService {
         @Path("username") username: String,
         @Path("day") day: String
     ): Response<List<ScheduleResponse>>
+
+    @GET("absences")
+    fun getAbsence(): Call<ResponseAbsences>
 }
 

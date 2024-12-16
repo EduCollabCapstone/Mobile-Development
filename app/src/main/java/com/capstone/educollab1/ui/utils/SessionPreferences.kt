@@ -14,31 +14,26 @@ class SessionManager(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    // Menyimpan username dan token
     fun saveUserData(username: String, token: String) {
         sharedPreferences.edit().apply {
-            putString(KEY_USERNAME, username)  // Menyimpan username
-            putString(KEY_TOKEN, token)       // Menyimpan token
+            putString(KEY_USERNAME, username)
+            putString(KEY_TOKEN, token)
             apply()
         }
     }
 
-    // Mendapatkan username
     fun getUsername(): String? {
         return sharedPreferences.getString(KEY_USERNAME, null)
     }
 
-    // Mendapatkan token
     fun getToken(): String? {
         return sharedPreferences.getString(KEY_TOKEN, null)
     }
 
-    // Mengecek apakah pengguna sudah login berdasarkan token
     fun isLoggedIn(): Boolean {
-        return !getToken().isNullOrEmpty() // True jika token ada dan tidak kosong
+        return !getToken().isNullOrEmpty()
     }
 
-    // Logout dan hapus data username dan token
     fun logout() {
         sharedPreferences.edit().apply {
             remove(KEY_USERNAME)
@@ -47,7 +42,6 @@ class SessionManager(context: Context) {
         }
     }
 
-    // Menghapus semua data di SharedPreferences
     fun clearAllData() {
         sharedPreferences.edit().apply {
             clear()

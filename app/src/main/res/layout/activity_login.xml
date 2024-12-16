@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:background="@drawable/bg"
-    android:gravity="center">
+    android:gravity="center"
+    android:fitsSystemWindows="true">
 
     <!-- Logo -->
     <ImageView
@@ -33,7 +34,7 @@
         android:text="Hi, Welcome Back"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="#0099A9" />
+        android:textColor="@color/white" />
 
     <!-- Subtext -->
     <TextView
@@ -56,7 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:drawableStart="@drawable/ic_account"/>
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
 
     <!-- Spacer -->
     <Space
@@ -70,8 +72,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_edt"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:drawableStart="@drawable/ic_password"/>
+        android:inputType="textPassword" />
 
     <!-- Spacer -->
     <Space
@@ -105,14 +106,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an Account?"
-            android:textColor="@color/DAFFFB" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/registerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:textColor="@color/DAFFFB"
+            android:textColor="@color/white"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 </LinearLayout>

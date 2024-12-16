@@ -27,19 +27,11 @@ class CustomEditText @JvmOverloads constructor(
         isSingleLine = true
         ellipsize = TextUtils.TruncateAt.END
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
-
-        // Animasi saat fokus
-        setOnFocusChangeListener { _, hasFocus ->
-            alpha = if (hasFocus) 1f else 0.8f
-            scaleX = if (hasFocus) 1.02f else 1f
-            scaleY = if (hasFocus) 1.02f else 1f
-        }
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        // Memastikan teks selalu terlihat
-        setTextColor(ContextCompat.getColor(context, R.color.black))
-        setHintTextColor(ContextCompat.getColor(context, R.color.grey))
+        setTextColor(ContextCompat.getColor(context, R.color.white))
+        setHintTextColor(ContextCompat.getColor(context, R.color.white))
     }
 }

@@ -30,19 +30,6 @@
             android:padding="16dp"
             android:background="@drawable/ic_edt">
 
-            <TextView
-                android:id="@+id/day_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/a04364A"
-                android:letterSpacing="0.02"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Senin" />
 
             <TextView
                 android:id="@+id/subject_text_view"
@@ -54,7 +41,6 @@
                 android:letterSpacing="0.01"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/day_text_view"
                 tools:text="Matematika" />
 
             <TextView

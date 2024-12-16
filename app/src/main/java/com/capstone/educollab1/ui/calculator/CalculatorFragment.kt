@@ -42,7 +42,7 @@ class CalculatorFragment : Fragment() {
             CalculatorItem("Nilai Sebelumnya"),
             CalculatorItem("Banyak Latihan Soal"),
             CalculatorItem("Aktivitas Ektrakurikuler"),
-            CalculatorItem("Performa Indeks", isResult = true) // Hasil prediksi
+            CalculatorItem("Performa Indeks", isResult = true)
         )
 
         adapter = CalculatorAdapter(calculatorItems)
@@ -54,7 +54,6 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun makePrediction(calculatorItems: List<CalculatorItem>) {
-        // Gunakan mlApiService untuk prediksi
         val mlApiService = ApiConfig.mlApiService
 
         val predictionRequest = PredictionRequest(
@@ -71,9 +70,8 @@ class CalculatorFragment : Fragment() {
                 response: Response<PredictionResponse>
             ) {
                 if (response.isSuccessful) {
-                    // Pastikan nilai prediction dikonversi ke Float atau Double
                     val prediction = response.body()?.prediction?.toDoubleOrNull() ?: 0.0
-                    val formattedPrediction = String.format("%.2f", prediction) // Format dengan 2 angka di belakang koma
+                    val formattedPrediction = String.format("%.2f", prediction)
                     calculatorItems[5].value = formattedPrediction
                     adapter.notifyItemChanged(5)
                 } else {

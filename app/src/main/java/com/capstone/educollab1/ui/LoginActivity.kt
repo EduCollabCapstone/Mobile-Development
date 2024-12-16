@@ -26,18 +26,15 @@ class LoginActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
-        // Cek jika pengguna sudah login, langsung arahkan ke MainActivity
         if (sessionManager.isLoggedIn()) {
             redirectToMainActivity()
             return
         }
 
-        // Handle Login Button click
         binding.loginButton.setOnClickListener {
             performLogin()
         }
 
-        // Handle Register Text click
         binding.registerTextView.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -55,26 +52,22 @@ class LoginActivity : AppCompatActivity() {
 
         val loginRequest = LoginRequest(username, password)
 
-        // Using coroutine to call the suspend function
         lifecycleScope.launch {
             try {
                 val response = ApiConfig.apiService.loginUser(loginRequest)
                 if (response.isSuccessful && response.body() != null) {
                     val loginResponse = response.body()!!
 
-                    // Validasi jika token kosong
                     val token = loginResponse.token
                     if (token.isNullOrEmpty()) {
                         Toast.makeText(this@LoginActivity, "Token is empty", Toast.LENGTH_SHORT).show()
                         return@launch
                     }
 
-                    // Simpan data pengguna jika valid
                     sessionManager.saveUserData(username, token)
 
                     Toast.makeText(this@LoginActivity, "Login success", Toast.LENGTH_SHORT).show()
 
-                    // Redirect to MainActivity after successful login
                     redirectToMainActivity()
                 } else {
                     val errorBody = response.errorBody()?.string()
@@ -86,7 +79,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk mengarahkan pengguna ke MainActivity
     private fun redirectToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

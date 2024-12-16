@@ -2,6 +2,7 @@ package com.capstone.educollab1.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,30 +10,20 @@ import com.capstone.educollab1.MainActivity
 import com.capstone.educollab1.databinding.ActivitySignUpBinding
 import com.capstone.educollab1.ui.remote.ApiConfig
 import com.capstone.educollab1.ui.remote.UserRequest
-import com.capstone.educollab1.ui.remote.UserResponse
-import com.capstone.educollab1.ui.utils.SessionManager
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
-    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        sessionManager = SessionManager(this)
-
-        // Cek jika pengguna sudah login, langsung arahkan ke MainActivity
-        if (sessionManager.isLoggedIn()) {
-            redirectToMainActivity()
-            return
-        }
 
         // Handle register button click
         binding.btnRegister.setOnClickListener { registerUser() }
@@ -67,6 +58,9 @@ class SignUpActivity : AppCompatActivity() {
 
         val userRequest = UserRequest(username, password, email)
 
+        // Log the request data
+        Log.d("SignUp", "Request Data: Username=${userRequest.username}, Email=${userRequest.email}, Password=${userRequest.password}")
+
         // Using coroutine to call the suspend function
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -75,31 +69,33 @@ class SignUpActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val user = response.body()!!
 
-                    // Save user data in session
-                    withContext(Dispatchers.Main) {
-                        sessionManager.saveUserData(user.username, user.token)
+                    // Log success response
+                    Log.d("SignUp", "Response Success: $user")
 
-                        // Show success message
+                    // Show success message and redirect to MainActivity
+                    withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@SignUpActivity,
                             "Account created successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-
-                        // Redirect to MainActivity
                         redirectToMainActivity()
                     }
                 } else {
+                    // Handle error response
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = parseErrorMessage(errorBody)
+
+                    // Log error response
+                    Log.e("SignUp", "Response Error: Code ${response.code()}, Body: $errorBody")
+
                     withContext(Dispatchers.Main) {
-                        val errorBody = response.errorBody()?.string()
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            "Registration failed: $errorBody",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@SignUpActivity, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
+                // Handle exception
+                Log.e("SignUp", "Exception: ${e.message}", e)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@SignUpActivity, "Error: ${e.message}", Toast.LENGTH_SHORT)
                         .show()
@@ -108,7 +104,17 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk mengarahkan pengguna ke MainActivity
+    // Parse error message from server response
+    private fun parseErrorMessage(errorBody: String?): String {
+        return try {
+            val jsonObject = JSONObject(errorBody ?: "")
+            jsonObject.getString("message") // Adjust this key based on your server response
+        } catch (e: Exception) {
+            "Registration failed. Please try again."
+        }
+    }
+
+    // Redirect to MainActivity
     private fun redirectToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

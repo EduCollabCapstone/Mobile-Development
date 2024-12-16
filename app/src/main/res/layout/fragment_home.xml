@@ -30,7 +30,8 @@
         app:civ_border_color="#0099A9"
         app:layout_constraintBottom_toBottomOf="@+id/tv_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_username" />
+        app:layout_constraintTop_toTopOf="@+id/tv_username"
+        android:src="@drawable/ic_account"/>
 
     <View
         android:id="@+id/divider"

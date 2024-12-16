@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,14 +22,147 @@
             android:layout_gravity="start"
             android:paddingBottom="8dp" />
 
-        <!-- RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/scheduleRecyclerView"
+        <!-- ScrollView to handle all days and RecyclerViews -->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            tools:listitem="@layout/item_schedule"/>
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Template for each day -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Hari Senin -->
+                    <TextView
+                        android:id="@+id/tvMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Senin"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMonday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Hari Selasa -->
+                    <TextView
+                        android:id="@+id/tvTuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selasa"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvTuesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Ulangi untuk hari lainnya (Rabu, Kamis, dll.) -->
+                    <!-- Hari Rabu -->
+                    <TextView
+                        android:id="@+id/tvWednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rabu"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvWednesday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Hari Kamis -->
+                    <TextView
+                        android:id="@+id/tvThursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kamis"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvThursday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Hari Jumat -->
+                    <TextView
+                        android:id="@+id/tvFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jumat"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFriday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Hari Sabtu -->
+                    <TextView
+                        android:id="@+id/tvSaturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sabtu"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSaturday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+                    <!-- Hari Minggu -->
+                    <TextView
+                        android:id="@+id/tvSunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minggu"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvSunday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_schedule" />
+
+
+                    <!-- Tambahkan TextView dan RecyclerView untuk Kamis, Jumat, Sabtu, Minggu -->
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <!-- FloatingActionButton -->

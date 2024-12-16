@@ -1,7 +1,5 @@
 package com.capstone.educollab1.ui.remote
 
-import com.capstone.educollab1.ui.remote.PredictionRequest
-import com.capstone.educollab1.ui.remote.PredictionResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,4 +10,7 @@ interface MLApiService {
     fun predictPerformance(
         @Body predictionRequest: PredictionRequest
     ): Call<PredictionResponse>
+
+    @POST("/predict_sentiment")
+    fun predictSentiment(@Body request: SentimentRequest): Call<SentimentResponse>
 }
